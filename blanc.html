@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Smile Constructions : tous travaux du bâtiment en Occitanie, maison neuve, agrandissement, rénovation. Maquette du site.">
+<title>Smile Constructions · Blanc</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap">
+<style>
+/* Mise en page : la maison plein cadre, en plein jour. Le premier écran est le curseur
+   avant/après : on tire la barre jaune et le chantier devient la maison. Fond blanc chaud,
+   texte noir du logo, jaune de signalétique, panneaux de verre blanc.
+   En-tête transparent sur la photo, pilule de verre au défilement. */
+:root{
+  --fond:#F7F6F2; --blanc:#FFFFFF; --noir:#1E1E1C; --craie:#EEEEEC; --gris:#DEDCD5; --sable:#66645E; --jaune:#F2C233; --jaune-pale:#FBEDC2;
+  --verre:rgba(255,255,255,.66); --verre-fort:rgba(255,255,255,.8);
+  --f:"Rubik","Arial Rounded MT Bold","Segoe UI",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip}
+body{margin:0;background:var(--fond);color:var(--noir);font-family:var(--f);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-weight:800;line-height:.95;margin:0;text-transform:uppercase;letter-spacing:-.015em;text-wrap:balance}
+h1:focus{outline:none}
+:focus-visible{outline:3px solid var(--noir);outline-offset:3px}
+[hidden]{display:none!important}
+.j{background:linear-gradient(transparent 60%,var(--jaune) 60%,var(--jaune) 94%,transparent 94%);padding:0 .06em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.verre{background:var(--verre);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.75)}
+
+/* ——— en-tête ——— */
+.top{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:padding .45s var(--ease)}
+.top .barre{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:18px;height:84px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));border:1px solid transparent;transition:max-width .5s var(--ease),height .45s var(--ease),border-radius .5s var(--ease),background .35s,border-color .35s,padding .45s var(--ease)}
+.top.pilule{padding-top:calc(env(safe-area-inset-top,0px) + 12px)}
+.top.pilule .barre{max-width:1000px;height:62px;border-radius:999px;background:var(--verre);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border-color:rgba(30,30,28,.12);padding-left:14px;padding-right:8px}
+@media (max-width:1040px){.top.pilule .barre{margin-inline:max(12px,env(safe-area-inset-left,0px))}}
+.marque{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.marque svg{width:44px;height:auto;transition:width .4s var(--ease)}
+.top.pilule .marque svg{width:34px}
+.marque b{font-weight:800;font-size:21px;line-height:.9}
+.marque b span{display:block;font-weight:600;font-size:10px;letter-spacing:.16em}
+.nav{margin-left:auto;display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--verre);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.7);transition:background .3s,border-color .3s}
+.top.pilule .nav{background:transparent;border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+.nav a{text-decoration:none;font-weight:600;font-size:15px;padding:9px 14px;border-radius:999px;transition:background .2s,color .2s}
+.nav a:hover{background:rgba(30,30,28,.07)}
+.nav a[aria-current="page"]{background:var(--noir);color:var(--blanc)}
+.tel{display:inline-flex;align-items:center;gap:8px;background:var(--jaune);color:var(--noir);font-weight:800;padding:12px 17px;border-radius:999px;text-decoration:none;font-variant-numeric:tabular-nums;white-space:nowrap;flex:none}
+.burger{display:none;margin-left:auto;width:46px;height:46px;border-radius:50%;border:1px solid rgba(30,30,28,.12);background:var(--verre-fort);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);cursor:pointer;place-items:center;flex:none}
+.burger span{display:block;width:18px;height:2px;background:var(--noir);position:relative;transition:background .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--noir);transition:transform .3s var(--ease)}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.menu-ouvert .burger span{background:transparent}
+.menu-ouvert .burger span::before{transform:translateY(6px) rotate(45deg)}
+.menu-ouvert .burger span::after{transform:translateY(-6px) rotate(-45deg)}
+.menu-mobile{position:fixed;inset:0;z-index:45;background:rgba(247,246,242,.86);-webkit-backdrop-filter:blur(26px) saturate(1.5);backdrop-filter:blur(26px) saturate(1.5);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:100px max(24px,env(safe-area-inset-left,0px)) 40px;opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s}
+.menu-mobile a{font-weight:800;font-size:clamp(34px,9vw,52px);text-transform:uppercase;text-decoration:none;line-height:1.15;transform:translateY(16px);transition:transform .5s var(--ease)}
+.menu-ouvert .menu-mobile{opacity:1;visibility:visible}
+.menu-ouvert .menu-mobile a{transform:none}
+.menu-mobile a[aria-current="page"]{text-decoration:underline;text-decoration-color:var(--jaune);text-decoration-thickness:6px;text-underline-offset:6px}
+.menu-mobile .tel{align-self:flex-start;margin-top:26px;font-size:20px;text-decoration:none}
+@media (max-width:980px){.nav,.top .tel{display:none}.burger{display:grid}}
+
+/* ——— pages ——— */
+.vue.entre{animation:page .65s var(--ease) both}
+@keyframes page{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+[data-monte].pret{transform:translateY(28px);transition:transform 1s var(--ease)}
+[data-monte].vu{transform:none}
+section{padding-block:110px}
+.ent{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px 60px;align-items:end;margin-bottom:60px}
+.ent h2{font-size:clamp(38px,5.4vw,76px)}
+.ent p{margin:0;font-size:18px;color:var(--sable);max-width:30em}
+@media (max-width:900px){.ent{grid-template-columns:minmax(0,1fr)}}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--f);font-weight:800;font-size:17px;padding:16px 26px;border-radius:999px;border:0;text-decoration:none;cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.btn-j{background:var(--jaune);color:var(--noir)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn svg{width:18px;height:14px;flex:none;transition:transform .2s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+
+/* entête de page intérieure : photo qui se fond dans le blanc */
+.tete{position:relative;min-height:min(66vh,600px);display:flex;align-items:flex-end;overflow:hidden;padding:0;background:var(--craie)}
+.tete img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tete::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,0) 26%)}
+.tete .wrap{position:relative;z-index:2;width:100%;padding-block:140px 40px}
+.tete .panneau{max-width:760px;border-radius:28px;padding:30px 32px}
+.tete .sur{display:inline-block;margin:0 0 16px;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;border-radius:999px;background:var(--jaune);color:var(--noir)}
+.tete h1{font-size:clamp(32px,5.6vw,84px);max-width:13ch}
+.tete p.chapo{max-width:34em;font-size:18px;color:#3A3935;margin:18px 0 0}
+@media (max-width:600px){.tete .panneau{padding:22px}}
+
+/* ——— accueil : le curseur est la page ——— */
+.hero{position:relative;height:min(94vh,880px);min-height:620px;overflow:hidden;background:var(--craie);user-select:none;-webkit-user-select:none;touch-action:pan-y;--p:42%;padding:0}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.hero .avant{clip-path:inset(0 calc(100% - var(--p)) 0 0)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.6) 0%,rgba(255,255,255,0) 22%);pointer-events:none}
+.hero .ligne{position:absolute;top:0;bottom:0;left:var(--p);width:5px;margin-left:-2.5px;background:var(--jaune);z-index:5;pointer-events:none}
+.prise{position:absolute;top:40%;left:var(--p);z-index:6;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:26px;background:var(--jaune);display:grid;place-items:center;pointer-events:none;border:3px solid var(--blanc);transition:transform .25s var(--ease),border-radius .25s var(--ease)}
+.hero.actif .prise{transform:scale(1.06);border-radius:50%}
+.prise svg{width:58px}
+.etiq{position:absolute;top:120px;z-index:4;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:8px 13px;border-radius:999px;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.etiq.g{left:max(20px,env(safe-area-inset-left,0px));background:rgba(255,255,255,.82);color:var(--noir)}
+.etiq.d{right:max(20px,env(safe-area-inset-right,0px));background:rgba(242,194,51,.92);color:var(--noir)}
+.hero input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;z-index:3;cursor:ew-resize}
+.hero:has(input:focus-visible) .prise{outline:4px solid var(--noir);outline-offset:4px}
+.texte{position:absolute;left:0;right:0;bottom:0;z-index:7;pointer-events:none}
+.texte .wrap{padding-block:0 32px}
+.texte .panneau{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:22px 40px;border-radius:30px;padding:30px 34px;pointer-events:auto}
+.texte h1{font-size:clamp(40px,6.2vw,100px);max-width:11ch}
+.texte h1 .l{display:block}
+.texte h1 .mot{display:inline-block;position:relative}
+.texte h1 .mot svg{position:absolute;left:-2%;bottom:-.2em;width:104%;height:.3em;overflow:visible}
+.cote{max-width:24em}
+.cote p{margin:0 0 18px;font-size:17px;color:#3A3935}
+.illu{position:absolute;right:12px;top:96px;z-index:8;font-size:11px;color:rgba(30,30,28,.7);background:rgba(255,255,255,.6);padding:3px 8px;border-radius:999px}
+@media (prefers-reduced-motion:no-preference){
+  .texte .panneau{animation:monte .9s var(--ease) .1s both}
+  .texte h1 .mot path{stroke-dasharray:400;stroke-dashoffset:400;animation:trace .9s cubic-bezier(.6,0,.2,1) .7s forwards}
+}
+@keyframes monte{from{transform:translateY(30px)}to{transform:none}}
+@keyframes trace{to{stroke-dashoffset:0}}
+@media (max-width:700px){
+  .hero{height:100svh;min-height:640px;max-height:920px}
+  .etiq{top:86px;font-size:11px}.illu{top:auto;bottom:6px}
+  .prise{top:30%;width:66px;height:66px;margin:-33px 0 0 -33px;border-radius:20px}.prise svg{width:44px}
+  .texte .wrap{padding-block:0 20px}.texte .panneau{padding:20px;border-radius:24px;gap:14px}
+  .texte h1{font-size:clamp(34px,10vw,50px)}.cote p{font-size:15px;margin-bottom:14px}
+}
+
+/* ruban des métiers */
+.ruban{background:var(--jaune);color:var(--noir);overflow:hidden;padding:0}
+.ruban .piste{display:flex;gap:46px;white-space:nowrap;padding-block:18px;font-weight:800;font-size:22px;text-transform:uppercase;width:max-content}
+.ruban .piste span{display:inline-flex;align-items:center;gap:46px}
+.ruban .piste span::after{content:"";width:38px;height:40px;flex:none;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%22250%200%20600%20640%22%3E%20%3Cg%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%20%3Cg%20stroke%3D%22%23EEEEEC%22%20stroke-width%3D%2284%22%3E%20%3Cpath%20d%3D%22M300%20270%20L557%2035%20L795%20262%20M740%20100%20L740%20195%20M361%20245%20L361%20405%20M756%20245%20L756%20405%20M325%20485%20L372%20455%20C430%20590%20690%20590%20745%20455%20L792%20485%22%2F%3E%20%3C%2Fg%3E%20%3Cpath%20d%3D%22M557%2062%20L361%20240%20L361%20410%20L756%20410%20L756%20240%20Z%22%20fill%3D%22%23EEEEEC%22%20stroke%3D%22none%22%2F%3E%20%3Cpath%20d%3D%22M300%20270%20L557%2035%20L795%20262%20M740%20100%20L740%20195%20M361%20245%20L361%20405%20M756%20245%20L756%20405%22%20stroke%3D%22%231E1E1C%22%20stroke-width%3D%2236%22%2F%3E%20%3Cpath%20d%3D%22M325%20485%20L372%20455%20C430%20590%20690%20590%20745%20455%20L792%20485%22%20stroke%3D%22%23F2C233%22%20stroke-width%3D%2234%22%2F%3E%20%3C%2Fg%3E%20%3Cg%20fill%3D%22%23F2C233%22%3E%20%3Crect%20x%3D%22498%22%20y%3D%22268%22%20width%3D%2250%22%20height%3D%2252%22%20rx%3D%225%22%2F%3E%3Crect%20x%3D%22568%22%20y%3D%22268%22%20width%3D%2250%22%20height%3D%2252%22%20rx%3D%225%22%2F%3E%20%3Crect%20x%3D%22498%22%20y%3D%22338%22%20width%3D%2250%22%20height%3D%2252%22%20rx%3D%225%22%2F%3E%3Crect%20x%3D%22568%22%20y%3D%22338%22%20width%3D%2250%22%20height%3D%2252%22%20rx%3D%225%22%2F%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E%20") center/contain no-repeat}
+@media (prefers-reduced-motion:no-preference){.ruban .piste{animation:defile 40s linear infinite}}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* trois offres */
+.offres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.offre{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:3/4;text-decoration:none;display:flex;align-items:flex-end;background:var(--craie)}
+.offre img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.offre:hover img{transform:scale(1.06)}
+.offre .verre{position:relative;margin:12px;width:100%;border-radius:20px;padding:20px;transition:background .3s}
+.offre:hover .verre{background:rgba(255,255,255,.86)}
+.offre .num{display:inline-block;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--jaune);padding:4px 9px;border-radius:999px}
+.offre h3{font-size:clamp(24px,2.4vw,32px);margin:10px 0 8px}
+.offre p{margin:0;color:#3A3935;font-size:15px}
+@media (max-width:900px){.offres{grid-template-columns:minmax(0,1fr)}.offre{aspect-ratio:4/3}}
+
+.appel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:center;border-radius:30px;padding:44px;background:var(--jaune-pale);border:1px solid #F0DA94}
+.appel h2{font-size:clamp(30px,3.8vw,52px)}
+.appel p{color:#4A4842;margin:14px 0 0;max-width:34em}
+.appel .btn-j{background:var(--noir);color:var(--jaune)}
+@media (max-width:760px){.appel{grid-template-columns:minmax(0,1fr);padding:28px}}
+
+/* ——— services ——— */
+.etapes{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:start}
+.liste{list-style:none;margin:0;padding:0;border-top:1px solid var(--gris)}
+.liste li{border-bottom:1px solid var(--gris)}
+.liste button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:60px minmax(0,1fr) auto;align-items:center;gap:16px;padding:20px 6px;cursor:pointer;border-radius:16px;transition:padding .3s var(--ease),background .3s}
+.liste button:focus-visible{outline:3px solid var(--noir);outline-offset:2px}
+.liste .lt{font-weight:900;font-size:32px;color:#C9C6BC;transition:color .2s}
+.liste h3{font-size:clamp(19px,2vw,26px)}
+.liste .fl{width:40px;height:40px;border-radius:50%;border:2px solid #C9C6BC;display:grid;place-items:center;transition:all .25s var(--ease)}
+.liste .fl svg{width:16px}
+.liste .det{grid-column:2/4;font-size:16px;color:var(--sable);line-height:1.5;max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.liste button[aria-expanded="true"]{padding-left:14px;background:var(--blanc)}
+.liste button[aria-expanded="true"] .lt,.liste button:hover .lt{color:var(--noir)}
+.liste button[aria-expanded="true"] .fl{background:var(--jaune);border-color:var(--jaune);color:var(--noir);transform:rotate(90deg)}
+.liste button[aria-expanded="true"] .det{max-height:140px}
+.vue-img{position:sticky;top:96px;border-radius:26px;overflow:hidden;aspect-ratio:4/5;max-width:100%;background:var(--craie)}
+.vue-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s ease,transform 1.2s var(--ease)}
+.vue-img img.off{opacity:0;transform:scale(1.04)}
+.vue-img .cap{position:absolute;left:16px;bottom:16px;right:16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.vue-img .cap b{background:var(--jaune);color:var(--noir);font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:.08em;padding:8px 13px;border-radius:999px}
+.vue-img .cap span{font-size:11px;color:var(--noir);background:rgba(255,255,255,.7);padding:3px 8px;border-radius:999px}
+@media (max-width:900px){.etapes{grid-template-columns:minmax(0,1fr)}.vue-img{position:relative;top:0;aspect-ratio:4/3;order:-1}}
+.duo-serv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.serv{border-radius:26px;overflow:hidden;background:var(--blanc);border:1px solid var(--gris)}
+.serv img{aspect-ratio:16/9;width:100%;object-fit:cover}
+.serv div{padding:28px}
+.serv h3{font-size:clamp(26px,2.6vw,34px);margin-bottom:12px}
+.serv p{color:var(--sable);margin:0}
+.serv ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.serv li{background:var(--jaune-pale);border-radius:999px;padding:6px 13px;font-weight:600;font-size:14px}
+@media (max-width:860px){.duo-serv{grid-template-columns:minmax(0,1fr)}}
+
+/* ——— avant / après ——— */
+.cartes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 26px}
+.carte{display:flex;flex-direction:column;gap:14px}
+.aa{position:relative;aspect-ratio:3/2;border-radius:22px;overflow:hidden;background:var(--craie);user-select:none;-webkit-user-select:none;touch-action:pan-y;cursor:ew-resize;--p:50%}
+.aa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.aa .avant{clip-path:inset(0 calc(100% - var(--p)) 0 0)}
+.aa .ligne{position:absolute;top:0;bottom:0;left:var(--p);width:4px;margin-left:-2px;background:var(--jaune)}
+.aa .rond{position:absolute;top:50%;left:var(--p);width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:var(--jaune);border:3px solid var(--blanc);display:grid;place-items:center;transition:transform .25s var(--ease)}
+.aa .rond svg{width:26px}
+.aa:hover .rond,.aa.actif .rond{transform:scale(1.12)}
+.aa input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:ew-resize}
+.aa:has(input:focus-visible){outline:3px solid var(--noir);outline-offset:4px}
+.aa .t{position:absolute;top:12px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 11px;border-radius:999px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.aa .t.g{left:12px;background:rgba(255,255,255,.82);color:var(--noir)}.aa .t.d{right:12px;background:rgba(242,194,51,.92);color:var(--noir)}
+.aa .illu{top:auto;bottom:8px;right:10px;font-size:10px}
+.carte h3{font-size:24px}
+.carte p{margin:0;color:var(--sable);font-size:15.5px}
+@media (max-width:860px){.cartes{grid-template-columns:minmax(0,1fr)}}
+
+
+/* ——— sections ajoutées ——— */
+.x-ent{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px 60px;align-items:end;margin-bottom:56px}
+.x-ent h2{font-size:clamp(36px,5vw,70px)}
+.x-ent p{margin:0;font-size:18px;color:var(--sable);max-width:30em}
+@media (max-width:900px){.x-ent{grid-template-columns:minmax(0,1fr)}}
+.x-mark{background:linear-gradient(transparent 60%,var(--jaune) 60%,var(--jaune) 94%,transparent 94%);padding:0 .06em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.x-chiffres{padding-block:0 20px}
+.x-chif{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.x-chif li{background:var(--blanc);border:1px solid var(--gris);border-radius:24px;padding:24px 20px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.x-chif b{font-weight:900;font-size:clamp(40px,5.4vw,76px);line-height:.9;font-variant-numeric:tabular-nums}
+.x-chif li:first-child{background:var(--jaune);border-color:var(--jaune)}
+.x-chif span{font-weight:600;color:var(--sable);font-size:15px}
+.x-chif li:first-child span{color:var(--noir)}
+@media (max-width:800px){.x-chif{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.x-galerie{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.x-carte{margin:0;border-radius:26px;overflow:hidden;background:var(--blanc);border:1px solid var(--gris);transition:transform .3s var(--ease)}
+.x-carte:hover{transform:translateY(-4px)}
+.x-img{position:relative;aspect-ratio:4/3;overflow:hidden}
+.x-img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.x-carte:hover .x-img img{transform:scale(1.05)}
+.x-illu{position:absolute;right:10px;bottom:10px;font-size:10px;background:rgba(255,255,255,.75);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:3px 8px;border-radius:99px}
+.x-carte figcaption{padding:20px 22px 24px}
+.x-type{display:inline-block;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.1em;background:var(--jaune-pale);border-radius:99px;padding:5px 11px}
+.x-carte h3{font-size:21px;margin:12px 0 8px;line-height:1.1}
+.x-carte p{margin:0;font-size:15px;color:var(--sable)}
+@media (max-width:1000px){.x-galerie{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.x-galerie{grid-template-columns:minmax(0,1fr)}}
+.x-filtres{display:flex;flex-wrap:wrap;gap:10px;margin:-24px 0 30px}
+.x-filtres button{font-family:var(--f);font-weight:700;font-size:15px;padding:11px 18px;border-radius:999px;border:1px solid var(--gris);background:var(--blanc);color:var(--noir);cursor:pointer;transition:background .2s,border-color .2s}
+.x-filtres button[aria-pressed="true"]{background:var(--jaune);border-color:var(--jaune)}
+.x-filtres button:hover{border-color:var(--jaune)}
+.x-suite{margin:34px 0 0}
+.x-lien{display:inline-flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;background:var(--blanc);border:1px solid var(--gris);padding:14px 22px;border-radius:999px;transition:background .2s}
+.x-lien:hover{background:var(--jaune);border-color:var(--jaune)}
+.x-process{background:var(--blanc);border-block:1px solid var(--gris)}
+.x-pas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.x-pas li{position:relative;padding:26px;border-radius:24px;background:var(--fond)}
+.x-pas b{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:var(--jaune);font-weight:900;font-size:24px;margin-bottom:18px}
+.x-pas h3{font-size:22px;margin-bottom:8px}
+.x-pas p{margin:0;font-size:15.5px;color:var(--sable)}
+@media (max-width:1000px){.x-pas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.x-pas{grid-template-columns:minmax(0,1fr)}}
+.x-quatre{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.x-quatre article{background:var(--blanc);border:1px solid var(--gris);border-radius:24px;padding:26px}
+.x-quatre svg{width:50px;height:50px;color:var(--noir);background:var(--jaune);border-radius:50%;padding:9px;margin-bottom:16px}
+.x-quatre h3{font-size:22px;margin-bottom:8px}
+.x-quatre p{margin:0;color:var(--sable);font-size:15.5px}
+@media (max-width:1000px){.x-quatre{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.x-quatre{grid-template-columns:minmax(0,1fr)}}
+.x-faq{padding-top:0}
+.x-q{display:grid;gap:12px;max-width:920px}
+.x-q details{background:var(--blanc);border:1px solid var(--gris);border-radius:22px;overflow:hidden;transition:border-color .2s}
+.x-q details[open]{border-color:var(--jaune)}
+.x-q summary{cursor:pointer;list-style:none;padding:20px 24px;font-weight:700;font-size:18px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.x-q summary::-webkit-details-marker{display:none}
+.x-q summary::after{content:"+";font-size:26px;line-height:1;width:38px;height:38px;border-radius:50%;background:var(--jaune);display:grid;place-items:center;flex:none;transition:transform .25s var(--ease)}
+.x-q details[open] summary::after{transform:rotate(45deg)}
+.x-q details p{margin:0;padding:0 24px 22px;color:var(--sable)}
+
+
+.x-travaux{padding-top:20px}
+.x-metiers{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.x-metiers li{display:flex;flex-direction:column;gap:4px;min-width:0;background:var(--blanc);border:1px solid var(--gris);border-radius:20px;padding:18px 20px;transition:border-color .2s,background .2s,transform .25s var(--ease)}
+.x-metiers li:hover{border-color:var(--jaune);background:var(--jaune-pale);transform:translateY(-2px)}
+.x-metiers b{font-weight:800;font-size:19px;display:flex;align-items:center;gap:10px}
+.x-metiers b::before{content:"";width:12px;height:12px;flex:none;background:var(--jaune);border-radius:50%}
+.x-metiers span{font-size:14.5px;color:var(--sable)}
+.x-aussi{margin:26px 0 0;font-size:17px;max-width:52em}
+.x-aussi b{background:linear-gradient(transparent 60%,var(--jaune) 60%)}
+@media (max-width:1000px){.x-metiers{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:700px){.x-metiers{grid-template-columns:repeat(2,minmax(0,1fr))}.x-metiers b{font-size:16px}}
+.x-tous{display:table;font-size:14px;font-weight:800;letter-spacing:.08em;background:var(--jaune);padding:8px 14px 6px;border-radius:999px;margin-bottom:18px;line-height:1.2}
+
+/* ——— 3D ——— */
+.d3{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:44px;align-items:center}
+.scene{position:relative;height:min(72vh,660px);min-height:380px;border-radius:30px;overflow:hidden;background:linear-gradient(#DCE9F0,#F7F3E8);border:1px solid var(--gris);touch-action:none}
+.scene canvas{display:block;width:100%;height:100%;cursor:grab}
+.scene canvas:active{cursor:grabbing}
+.scene .lab{position:absolute;left:18px;top:18px;background:var(--jaune);color:var(--noir);border-radius:999px;padding:8px 14px;font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:.08em;pointer-events:none}
+.scene .aide{position:absolute;right:18px;bottom:18px;font-size:13px;font-weight:600;color:var(--noir);background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);padding:7px 12px;border-radius:999px;pointer-events:none}
+.pas3d{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:8px}
+.pas3d button{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:999px;border:1px solid var(--gris);background:var(--blanc);font-weight:700;cursor:pointer;transition:all .25s var(--ease)}
+.pas3d button b{font-weight:900;color:#B5B2A8;width:22px;transition:color .2s}
+.pas3d button:hover{border-color:var(--jaune)}
+.pas3d button[aria-pressed="true"]{background:var(--jaune);border-color:var(--jaune)}
+.pas3d button[aria-pressed="true"] b{color:var(--noir)}
+.pas3d button:focus-visible{outline:3px solid var(--noir);outline-offset:2px}
+@media (max-width:900px){.d3{grid-template-columns:minmax(0,1fr)}.d3 .scene{order:-1}}
+
+/* ——— contact ——— */
+.fin{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px}
+.deps{display:flex;flex-wrap:wrap;gap:8px;margin:30px 0 0;padding:0;list-style:none}
+.deps li{font-weight:600;font-size:15px;background:var(--blanc);border:1px solid var(--gris);border-radius:999px;padding:7px 13px;transition:border-color .2s,background .2s}
+.deps li b{font-variant-numeric:tabular-nums;margin-right:6px;font-weight:900}
+.deps li:hover{border-color:var(--jaune);background:var(--jaune-pale)}
+.numero{display:inline-block;margin-top:40px;font-weight:900;font-size:clamp(34px,4.4vw,60px);text-decoration:none;font-variant-numeric:tabular-nums;background:var(--jaune);padding:.1em .4em;border-radius:20px}
+.numero small{display:block;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px}
+form{background:var(--blanc);border:1px solid var(--gris);border-radius:30px;padding:30px;display:grid;gap:16px}
+form h2{font-size:28px;margin-bottom:6px}
+.champ{display:grid;gap:7px}
+.champ label{font-weight:600;font-size:14px;color:var(--sable)}
+.champ input,.champ select,.champ textarea{font-family:var(--f);font-size:16px;padding:14px 16px;border:1px solid var(--gris);border-radius:14px;background:var(--fond);color:var(--noir);transition:border-color .2s,box-shadow .2s,background .2s}
+.champ input:focus,.champ select:focus,.champ textarea:focus{border-color:var(--jaune);background:var(--blanc);outline:none;box-shadow:0 0 0 3px rgba(242,194,51,.4)}
+.champ textarea{min-height:120px;resize:vertical}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.merci{background:var(--jaune);color:var(--noir);font-weight:700;border-radius:14px;padding:12px 14px;margin:0}
+@media (max-width:900px){.fin{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.deux{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--gris);background:var(--blanc);color:var(--sable);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;padding-block:28px}
+footer nav{display:flex;flex-wrap:wrap;gap:6px 20px}
+footer a{text-decoration:none}footer a:hover{color:var(--noir);text-decoration:underline;text-decoration-color:var(--jaune);text-decoration-thickness:3px}
+@media (max-width:900px){section{padding-block:80px}}
+
+
+/* ——— carte de l'Occitanie ——— */
+.x-zone{background:var(--blanc);border-block:1px solid var(--gris)}
+.carte{position:relative;max-width:1060px;margin:0 auto}
+.c-svg{display:block;width:100%;height:auto;overflow:visible}
+.c-ombre{transform:translate(0,14px)}
+.c-ombre path{fill:rgba(30,30,28,.07);stroke:rgba(30,30,28,.07);stroke-width:10;stroke-linejoin:round}
+.c-fond path{fill:none;stroke:var(--noir);stroke-width:6;stroke-linejoin:round}
+.c-dep{fill:var(--jaune-pale);stroke:rgba(30,30,28,.32);stroke-width:1.5;stroke-linejoin:round;transition:fill .2s}
+.c-dep:hover{fill:#F8E08F}
+.c-arc{fill:none;stroke:var(--noir);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation-name:c-trace;animation-timing-function:cubic-bezier(.55,0,.25,1);animation-iteration-count:infinite}
+@keyframes c-trace{0%{stroke-dashoffset:100;opacity:.8}42%{stroke-dashoffset:0;opacity:.8}80%{stroke-dashoffset:0;opacity:.8}100%{stroke-dashoffset:0;opacity:0}}
+.a-actif .c-arc{stroke-opacity:.2}
+.c-arc.actif{animation:none;stroke-dashoffset:0;opacity:1;stroke-opacity:1;stroke:#E0A800;stroke-width:6}
+.c-mobile{fill:var(--jaune);stroke:var(--noir);stroke-width:3}
+.c-impact{fill:none;stroke:#E0A800;stroke-width:3}
+.c-onde{fill:none;stroke:#E0A800;stroke-width:3}
+.c-point{fill:var(--blanc);stroke:var(--noir);stroke-width:3;transform-box:fill-box;transform-origin:center;transition:transform .2s var(--ease)}
+.c-hub .c-point{fill:var(--jaune);stroke:var(--noir);stroke-width:4}
+.c-lab{pointer-events:none;transition:opacity .2s}
+.c-etiq{fill:rgba(255,255,255,.96);stroke:rgba(30,30,28,.2);stroke-width:1.5}
+.c-nom{font-family:var(--f);font-weight:700;font-size:22px;fill:var(--noir)}
+.c-hub .c-etiq{fill:var(--jaune);stroke:var(--noir);stroke-width:2}
+.c-hub .c-nom{font-size:30px;font-weight:900;text-transform:uppercase}
+.c-ville:not(.c-pref):not(.actif) .c-lab{opacity:0}
+.c-ville.actif .c-etiq{fill:var(--jaune);stroke:var(--noir)}
+.c-ville{cursor:pointer;outline:none}
+.c-zone{fill:transparent}
+.c-ville.actif .c-point,.c-ville:focus-visible .c-point{transform:scale(1.45)}
+.c-info{position:absolute;z-index:2;transform:translate(-12%,calc(-100% - 26px));background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--gris);border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:190px}
+.c-info.dessous{transform:translate(-12%,30px)}
+.c-info b{font-size:19px}
+.c-info span{font-size:13.5px;color:var(--sable)}
+.c-info a{margin-top:8px;font-weight:800;font-size:14px;text-decoration:none;background:var(--jaune);border-radius:99px;padding:7px 13px;align-self:flex-start}
+@media (max-width:700px){.carte{margin-inline:-10px}.c-ville:not(.c-hub):not(.c-mob):not(.actif) .c-lab{opacity:0}.c-nom{font-size:38px}.c-hub .c-nom{font-size:44px}.c-etiq{stroke-width:3}.c-arc{stroke-width:5}.c-point{stroke-width:5}.c-fond path{stroke-width:10}}
+
+
+/* ——— page contact : questionnaire en haut ——— */
+.contact-v{display:block!important;max-width:980px}
+.contact-tete{margin-bottom:34px}
+.contact-tete p{max-width:36em}
+.contact-bas{margin-top:60px}
+.contact-bas .deps{margin-top:24px}
+/* ——— questionnaire ——— */
+.q{background:var(--blanc);border:1px solid var(--gris);border-radius:30px;padding:30px;min-width:0}
+.q fieldset{border:0;margin:0;padding:0;min-width:0}
+.q-haut{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14px;color:var(--sable)}
+.q-nometape{color:var(--noir);font-weight:700}
+.q-barre{height:8px;border-radius:99px;margin:12px 0 26px;overflow:hidden;background:var(--fond)}
+.q-barre i{display:block;height:100%;background:var(--jaune);border-radius:99px;transition:width .5s var(--ease)}
+.q-titre{display:block;font-weight:800;font-size:clamp(24px,3vw,34px);text-transform:uppercase;line-height:1;margin-bottom:16px;padding:0;outline:none}
+.q-choix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.q-multi{display:flex;flex-wrap:wrap;gap:8px}
+.q-carte{position:relative;display:flex;align-items:center;border:1px solid var(--gris);border-radius:18px;padding:15px 16px;font-weight:600;font-size:16px;cursor:pointer;background:var(--fond);transition:background .15s,border-color .15s,transform .15s var(--ease)}
+.q-multi .q-carte{border-radius:999px;padding:10px 16px;font-size:15px}
+.q-carte input{position:absolute;opacity:0;pointer-events:none}
+.q-carte span::before{content:"";display:inline-block;width:16px;height:16px;border:2px solid #B5B2A8;border-radius:50%;margin-right:10px;vertical-align:-3px;background:var(--blanc);transition:all .15s}
+.q-multi .q-carte span::before{display:none}
+.q-carte:hover{border-color:var(--jaune)}
+.q-carte.on{background:var(--jaune);border-color:var(--jaune)}
+.q-carte.on span::before{border-color:var(--noir);background:var(--noir);box-shadow:inset 0 0 0 3px var(--jaune)}
+.q-carte:has(input:focus-visible){outline:3px solid var(--noir);outline-offset:3px}
+.q-aide{margin:-8px 0 12px;color:var(--sable);font-size:15px}
+.q-champ{display:grid;gap:7px;margin-top:14px;min-width:0}
+.q-champ label{font-weight:600;font-size:14px;color:var(--sable)}
+.q-champ label i{color:#B23A2E;font-style:normal}
+.q-champ input,.q-champ textarea{font-family:var(--f);font-size:16px;padding:14px 16px;border:1px solid var(--gris);border-radius:14px;background:var(--fond);color:var(--noir);width:100%;min-width:0;transition:border-color .2s,box-shadow .2s,background .2s}
+.q-champ input:focus,.q-champ textarea:focus{border-color:var(--jaune);background:var(--blanc);outline:none;box-shadow:0 0 0 3px rgba(242,194,51,.4)}
+.q-grille{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}
+.q-large{grid-column:1/-1}
+.q-case{display:flex;align-items:center;gap:10px;margin-top:16px;font-weight:600;cursor:pointer}
+.q-case input{width:20px;height:20px;accent-color:#E0A800}
+.q-hors{margin:12px 0 0;background:var(--jaune-pale);border-radius:12px;padding:10px 14px;font-size:14.5px}
+.q-note{font-size:13.5px;color:var(--sable);margin:14px 0 0}
+.q-erreur{margin:16px 0 0;font-weight:700;color:#A3261B;background:#FDECEA;border-radius:12px;padding:10px 14px}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:26px}
+.q-btn{font-family:var(--f);font-weight:800;font-size:17px;padding:15px 24px;border-radius:999px;border:0;background:var(--jaune);color:var(--noir);cursor:pointer;transition:transform .15s var(--ease)}
+.q-btn:hover{transform:translateY(-2px)}
+.q-sec{background:var(--fond);border:1px solid var(--gris)}
+.q-recap{margin:0;display:grid}
+.q-recap div{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:10px;align-items:baseline;border-bottom:1px solid var(--gris);padding:11px 0}
+.q-recap dt{font-weight:700;font-size:13px;color:var(--sable)}
+.q-recap dd{margin:0;min-width:0;overflow-wrap:anywhere;font-weight:600}
+.q-modif{font-family:var(--f);font-weight:700;font-size:13px;background:none;border:0;text-decoration:underline;text-decoration-color:var(--jaune);text-decoration-thickness:3px;cursor:pointer;color:var(--noir)}
+.q-gros{font-weight:900;font-size:clamp(30px,4vw,46px);text-transform:uppercase;margin-bottom:10px;outline:none}
+.q-merci p{margin:0 0 12px}
+@media (max-width:560px){.q{padding:22px 16px;border-radius:24px}.q-choix{grid-template-columns:minmax(0,1fr)}.q-grille{grid-template-columns:minmax(0,1fr)}.q-recap div{grid-template-columns:minmax(0,1fr) auto}.q-recap dd{grid-column:1/-1}.q-recap .q-modif{grid-row:1;grid-column:2}.q-btn{font-size:16px;padding:14px 18px}}
+
+/* ——— pied de page ——— */
+.pied{background:var(--blanc);border-top:1px solid var(--gris);color:var(--noir);font-size:15.5px;padding-top:40px}
+.pied-appel{flex:1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px 30px;background:var(--jaune-pale);border-radius:30px;padding:34px 38px}
+.pied-sur{margin:0 0 6px;font-weight:600;color:#4A4842}
+.pied-num{font-weight:900;font-size:clamp(34px,5vw,60px);text-decoration:none;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.pied .pied-haut{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:36px;padding-block:56px 40px}
+.pied-marque p{margin:18px 0;max-width:28em;color:var(--sable)}
+.pied .marque svg{width:54px}
+.pied .marque b{font-size:26px}
+.pied-slogan{display:inline-block;font-weight:800;background:linear-gradient(transparent 60%,var(--jaune) 60%)}
+.pied-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pied-col h3{font-size:15px;letter-spacing:.08em;color:var(--sable);margin-bottom:4px}
+.pied-col a{text-decoration:none;font-weight:600;align-self:flex-start}
+.pied-col a:hover{text-decoration:underline;text-decoration-color:var(--jaune);text-decoration-thickness:3px;text-underline-offset:4px}
+.pied-col p{margin:0;color:var(--sable)}
+.pied-lien{background:var(--fond);border:1px solid var(--gris);border-radius:99px;padding:9px 15px;margin-top:4px}
+.pied .pied-bas{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;align-items:center;border-top:1px solid var(--gris);padding-block:20px;font-size:14px;color:var(--sable)}
+.pied-hautdepage{font-family:var(--f);font-weight:700;font-size:14px;background:var(--fond);border:1px solid var(--gris);border-radius:99px;padding:8px 15px;cursor:pointer;color:var(--noir)}
+@media (max-width:900px){.pied .pied-haut{grid-template-columns:repeat(2,minmax(0,1fr))}.pied-marque{grid-column:1/-1}}
+@media (max-width:480px){.pied .pied-haut{grid-template-columns:minmax(0,1fr);gap:28px}.pied-appel{padding:26px 22px}}
+
+/* ——— petits écrans ——— */
+h1,h2,h3{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+@media (max-width:700px){
+  .x-metiers{gap:10px}
+  .x-metiers li{padding:12px 14px}
+  .x-metiers b{font-size:15px;text-transform:none;letter-spacing:0;gap:8px}
+  .x-metiers b::before{width:9px;height:9px}
+  .x-metiers span{font-size:13.5px}
+  .x-ent h2{font-size:clamp(30px,9vw,44px)}
+}
+@media (max-width:400px){.x-metiers b{font-size:13.5px}.x-metiers li{padding:11px 12px}}
+
+/* ——— curseur : on n'attrape que le bouton ——— */
+.hero,.aa{cursor:default}
+.hero input,.aa input{pointer-events:none}
+.prise{pointer-events:auto;cursor:grab;touch-action:none}
+.hero.actif .prise{cursor:grabbing}
+.prise:hover{transform:scale(1.06)}
+.aa .rond{cursor:grab;touch-action:none;z-index:3}
+.aa.actif .rond{cursor:grabbing}
+.prise::after,.aa .rond::after{content:"";position:absolute;inset:-16px;border-radius:50%}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="250 0 600 640">
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M300 270 L557 35 L795 262 M740 100 L740 195 M361 245 L361 405 M756 245 L756 405 M325 485 L372 455 C430 590 690 590 745 455 L792 485" stroke="#EEEEEC" stroke-width="84"/>
+      <path d="M557 62 L361 240 L361 410 L756 410 L756 240 Z" fill="#EEEEEC" stroke="none"/>
+      <path d="M300 270 L557 35 L795 262 M740 100 L740 195 M361 245 L361 405 M756 245 L756 405" stroke="#1E1E1C" stroke-width="36"/>
+      <path d="M325 485 L372 455 C430 590 690 590 745 455 L792 485" stroke="#F2C233" stroke-width="34"/>
+    </g>
+    <g fill="#F2C233"><rect x="498" y="268" width="50" height="52" rx="5"/><rect x="568" y="268" width="50" height="52" rx="5"/><rect x="498" y="338" width="50" height="52" rx="5"/><rect x="568" y="338" width="50" height="52" rx="5"/></g>
+  </symbol>
+  <symbol id="fleches" viewBox="0 0 34 20"><path d="M11 3 3 10l8 7M23 3l8 7-8 7" fill="none" stroke="#141412" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="tel" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></symbol>
+  <symbol id="go" viewBox="0 0 18 14"><path d="M1 7h15M10 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="barre">
+    <a class="marque" href="#accueil" aria-label="Smile Constructions, accueil"><svg viewBox="250 0 600 640" aria-hidden="true"><use href="#logo" x="250" y="0" width="600" height="640"/></svg><b>SMILE<span>CONSTRUCTIONS</span></b></a>
+    <nav class="nav" aria-label="Pages">
+      <a data-lien href="#accueil">Accueil</a><a data-lien href="#services">Tous travaux</a><a data-lien href="#realisations">Réalisations</a><a data-lien href="#maquette-3d">Maison 3D</a><a data-lien href="#contact">Contact</a>
+    </nav>
+    <a class="tel" href="tel:+33634315223"><svg width="17" height="17" aria-hidden="true"><use href="#tel"/></svg>06 34 31 52 23</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span></button>
+  </div>
+</header>
+<div class="menu-mobile" id="menu">
+  <a data-lien href="#accueil">Accueil</a><a data-lien href="#services">Tous travaux</a><a data-lien href="#realisations">Réalisations</a><a data-lien href="#maquette-3d">Maison 3D</a><a data-lien href="#contact">Contact</a>
+  <a class="tel" href="tel:+33634315223"><svg width="18" height="18" aria-hidden="true"><use href="#tel"/></svg>06 34 31 52 23</a>
+</div>
+
+<main>
+<!-- ===================== ACCUEIL ===================== -->
+<div class="vue" data-vue="accueil">
+  <div class="hero" data-aa data-invite>
+    <img class="apres" src="img/maison-apres.jpg" alt="La maison terminée, façade enduite et toiture en tuiles canal, au soleil couchant" draggable="false">
+    <img class="avant" src="img/maison-avant.jpg" alt="Le même terrain pendant les fondations" draggable="false">
+    <span class="etiq g">Le terrain</span><span class="etiq d">Votre maison</span>
+    <input type="range" min="0" max="100" value="42" aria-label="Glisser pour passer du chantier à la maison terminée">
+    <span class="ligne" aria-hidden="true"></span>
+    <span class="prise" aria-hidden="true"><svg viewBox="250 0 600 640"><use href="#logo" x="250" y="0" width="600" height="640"/></svg></span>
+    <div class="texte">
+      <div class="wrap"><div class="panneau verre">
+        <h1><span class="x-tous">Tous travaux · tous corps d'état</span><span class="l">Des fondations</span><span class="l">aux <span class="mot">finitions<svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path d="M4 6 Q150 40 296 6" fill="none" stroke="#F2C233" stroke-width="7" stroke-linecap="round"/></svg></span></span></h1>
+        <div class="cote">
+          <p><strong>Tous travaux du bâtiment, de A à Z.</strong> Smile Constructions construit, agrandit et rénove votre maison en Occitanie. Un seul interlocuteur, 15 ans de métier et plus de 200 chantiers réalisés.</p>
+          <a class="btn btn-j" href="#contact">Parler de mon projet <svg aria-hidden="true"><use href="#go"/></svg></a>
+        </div></div>
+      </div>
+    </div>
+    <span class="illu">Image d'illustration</span>
+  </div>
+
+  <div class="ruban" aria-hidden="true"><div class="piste">
+    <span>Terrassement</span><span>Fondations</span><span>Maçonnerie</span><span>Charpente</span><span>Couverture</span><span>Menuiseries</span><span>Électricité</span><span>Plomberie</span><span>Isolation</span><span>Plâtrerie</span><span>Carrelage</span><span>Peinture</span>
+    <span>Terrassement</span><span>Fondations</span><span>Maçonnerie</span><span>Charpente</span><span>Couverture</span><span>Menuiseries</span><span>Électricité</span><span>Plomberie</span><span>Isolation</span><span>Plâtrerie</span><span>Carrelage</span><span>Peinture</span>
+  </div></div>
+
+  <section>
+    <div class="wrap">
+      <div class="ent" data-monte><h2>Construire,<br>agrandir, <span class="j">rénover</span></h2><p>Une maison neuve, une pièce en plus ou un intérieur à reprendre&nbsp;: la même équipe, les mêmes artisans, un seul devis.</p></div>
+      <div class="offres" data-monte>
+        <a class="offre" href="#services"><img src="img/maison-apres.jpg" alt=""><div class="verre"><span class="num">Neuf</span><h3>Maison neuve</h3><p>Du terrain nu à la remise des clés.</p></div></a>
+        <a class="offre" href="#realisations"><img src="img/extension-apres.jpg" alt=""><div class="verre"><span class="num">Agrandir</span><h3>Agrandissement</h3><p>Extension, surélévation, garage aménagé.</p></div></a>
+        <a class="offre" href="#realisations"><img src="img/cuisine-apres.jpg" alt=""><div class="verre"><span class="num">Rénover</span><h3>Rénovation intérieure</h3><p>Cuisine, salle de bains, sols, électricité.</p></div></a>
+      </div>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="appel" data-monte>
+        <div><h2>Votre maison <span class="j">en 3D</span></h2><p>Faites tourner la maquette et regardez-la se monter&nbsp;: fondations, murs, toiture, menuiseries, finitions.</p></div>
+        <a class="btn btn-j" href="#maquette-3d">Ouvrir la maquette <svg aria-hidden="true"><use href="#go"/></svg></a>
+      </div>
+    </div>
+  </section>
+  <section class="x-travaux">
+    <div class="wrap">
+      <div class="x-ent" data-monte><h2>Tous <span class="x-mark">travaux</span></h2><p>Gros œuvre, second œuvre, finitions&nbsp;: tous les corps d'état du bâtiment, faits par nos artisans et suivis par un seul interlocuteur.</p></div>
+      <ul class="x-metiers" data-monte><li><b>Démolition</b><span>Dépose, curage</span></li><li><b>Terrassement</b><span>Fouilles, réseaux</span></li><li><b>Fondations</b><span>Semelles, dalles</span></li><li><b>Maçonnerie</b><span>Murs, gros œuvre</span></li><li><b>Charpente</b><span>Pose et reprise</span></li><li><b>Couverture</b><span>Tuiles, zinguerie</span></li><li><b>Menuiseries</b><span>Fenêtres, portes, volets</span></li><li><b>Plomberie</b><span>Sanitaires, réseaux</span></li><li><b>Électricité</b><span>Installation, mise aux normes</span></li><li><b>Chauffage</b><span>Radiateurs, eau chaude</span></li><li><b>Isolation</b><span>Murs, combles</span></li><li><b>Plâtrerie</b><span>Cloisons, plafonds</span></li><li><b>Carrelage</b><span>Sols, faïence</span></li><li><b>Sols</b><span>Parquet, revêtements</span></li><li><b>Peinture</b><span>Intérieure, extérieure</span></li><li><b>Façades</b><span>Enduit, ravalement</span></li></ul>
+      <p class="x-aussi"><b>Et aussi&nbsp;:</b> maisons neuves, extensions, surélévations, garages aménagés, rénovations complètes, terrasses et aménagements extérieurs.</p>
+    </div>
+  </section>
+<section class="x-chiffres">
+    <div class="wrap"><ul class="x-chif" data-monte>
+      <li><b>15</b><span>ans d'expérience</span></li>
+      <li><b>200+</b><span>chantiers réalisés</span></li>
+      <li><b>13</b><span>départements d'Occitanie</span></li>
+      <li><b>1</b><span>seul interlocuteur</span></li>
+    </ul></div>
+  </section>
+  <section class="x-real">
+    <div class="wrap">
+      <div class="x-ent" data-monte><h2>Nos <span class="x-mark">réalisations</span></h2><p>Maisons neuves, agrandissements, rénovations&nbsp;: un aperçu de ce que nous construisons en Occitanie. Images d'illustration, bientôt remplacées par les photos de nos chantiers.</p></div>
+      
+      <div class="x-galerie" data-monte><figure class="x-carte" data-cat="neuf"><div class="x-img"><img src="img/maison-apres.jpg" alt="Maison de plain-pied en L"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Maison neuve</span><h3>Maison de plain-pied en L</h3><p>Fondations, maçonnerie, charpente, couverture, menuiseries, finitions</p></figcaption></figure><figure class="x-carte" data-cat="agrandir"><div class="x-img"><img src="img/extension-apres.jpg" alt="Extension de 30 m² sur le jardin"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Agrandissement</span><h3>Extension de 30 m² sur le jardin</h3><p>Fondations, maçonnerie, toit plat, baie vitrée</p></figcaption></figure><figure class="x-carte" data-cat="renover"><div class="x-img"><img src="img/cuisine-apres.jpg" alt="Cuisine entièrement refaite"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Rénovation</span><h3>Cuisine entièrement refaite</h3><p>Plomberie, électricité, carrelage, pose de la cuisine</p></figcaption></figure><figure class="x-carte" data-cat="renover"><div class="x-img"><img src="img/sdb-apres.jpg" alt="Salle de bains, douche à l'italienne"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Rénovation</span><h3>Salle de bains, douche à l'italienne</h3><p>Plomberie, étanchéité, faïence, peinture</p></figcaption></figure><figure class="x-carte" data-cat="renover"><div class="x-img"><img src="img/facade-apres.jpg" alt="Façade et terrasse reprises"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Rénovation</span><h3>Façade et terrasse reprises</h3><p>Enduit, menuiseries, volets, terrasse</p></figcaption></figure><figure class="x-carte" data-cat="neuf"><div class="x-img"><img src="img/etape-toit.jpg" alt="Chantier en cours : la toiture"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Maison neuve</span><h3>Chantier en cours : la toiture</h3><p>Charpente, tuiles canal, menuiseries posées</p></figcaption></figure></div>
+      <p class="x-suite"><a class="x-lien" href="#realisations">Voir toutes nos réalisations et les avant / après</a></p>
+    </div>
+  </section>
+  <section class="x-process">
+    <div class="wrap">
+      <div class="x-ent" data-monte><h2>Comment se passe <span class="x-mark">votre chantier</span></h2><p>Quatre étapes, et une seule personne à appeler du début à la fin.</p></div>
+      <ol class="x-pas" data-monte>
+        <li><b>1</b><h3>On se rencontre</h3><p>Vous nous appelez, nous venons voir le terrain ou la maison et nous écoutons votre projet.</p></li>
+        <li><b>2</b><h3>Le devis</h3><p>Un devis détaillé, poste par poste, pour tous les corps d'état.</p></li>
+        <li><b>3</b><h3>Le chantier</h3><p>Nos artisans se succèdent dans l'ordre. Vous êtes tenu au courant à chaque étape.</p></li>
+        <li><b>4</b><h3>La remise des clés</h3><p>Nous faisons le tour du chantier avec vous, puis les clés sont à vous.</p></li>
+      </ol>
+    </div>
+  </section>
+  <section class="x-pourquoi">
+    <div class="wrap">
+      <div class="x-ent" data-monte><h2>Pourquoi <span class="x-mark">Smile Constructions</span></h2><p>Avec les meilleurs artisans à vos côtés.</p></div>
+      <div class="x-quatre" data-monte>
+        <article><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="19" fill="none" stroke="currentColor" stroke-width="4"/><path d="M24 13v12l8 5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg><h3>15 ans, 200 chantiers</h3><p>Quinze ans de métier et plus de deux cents chantiers réalisés en Occitanie.</p></article>
+        <article><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40h32M12 40V22l12-10 12 10v18" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M20 40V30h8v10" fill="none" stroke="currentColor" stroke-width="4"/></svg><h3>Tous corps d'état</h3><p>Du terrassement à la peinture, chaque métier est confié à nos artisans.</p></article>
+        <article><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 8h14a3 3 0 0 1 3 3v26a3 3 0 0 1-3 3H17a3 3 0 0 1-3-3V11a3 3 0 0 1 3-3z" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="24" cy="34" r="2.5" fill="currentColor"/></svg><h3>Un seul interlocuteur</h3><p>Une seule personne à appeler, qui connaît tout votre chantier.</p></article>
+        <article><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 26c0 8 6 14 14 14s14-6 14-14" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="17" cy="16" r="3" fill="currentColor"/><circle cx="31" cy="16" r="3" fill="currentColor"/></svg><h3>Neuf ou rénovation</h3><p>Maison neuve, agrandissement ou rénovation intérieure&nbsp;: la même exigence.</p></article>
+      </div>
+    </div>
+  </section>
+<section class="x-zone">
+    <div class="wrap">
+      <div class="x-ent" data-monte><h2>Depuis Toulouse, <span class="x-mark">partout en Occitanie</span></h2><p>Nous partons de Toulouse et intervenons dans les treize départements de la région. Touchez une ville pour la voir.</p></div>
+      <div class="carte" data-carte></div>
+      <p class="x-suite"><a class="x-lien" href="#contact">Décrire mon projet</a></p>
+    </div>
+  </section>
+  <section class="x-faq">
+    <div class="wrap">
+      <div class="x-ent" data-monte><h2>Vos <span class="x-mark">questions</span></h2><p>Les réponses aux questions qu'on nous pose le plus souvent.</p></div>
+      <div class="x-q">
+        <details open><summary>Dans quelles villes intervenez-vous&nbsp;?</summary><p>Dans les treize départements d'Occitanie&nbsp;: autour de Toulouse, Montpellier, Nîmes, Perpignan, Albi, Montauban, Carcassonne, Tarbes, Rodez, Auch, Cahors, Foix et Mende.</p></details>
+        <details><summary>Faites-vous seulement des maisons neuves&nbsp;?</summary><p>Non. Nous agrandissons aussi les maisons (extension, surélévation, garage aménagé) et rénovons les intérieurs, d'une seule pièce à toute la maison.</p></details>
+        <details><summary>Dois-je trouver moi-même les artisans&nbsp;?</summary><p>Non. Nous coordonnons tous les corps d'état&nbsp;: maçon, couvreur, menuisier, électricien, plombier, plaquiste, carreleur et peintre.</p></details>
+        <details><summary>Comment obtenir un devis&nbsp;?</summary><p>Appelez le 06 34 31 52 23 ou remplissez le formulaire de contact&nbsp;: nous vous rappelons pour fixer une visite.</p></details>
+      </div>
+    </div>
+  </section>
+  <section style="padding-top:0"><div class="wrap"><div class="appel" data-monte><div><h2>Construisez avec <span class="j">le sourire</span></h2><p>Un terrain, une maison à agrandir, un intérieur à refaire&nbsp;? Parlons-en.</p></div><a class="btn btn-j" href="#contact">Demander un devis <svg aria-hidden="true"><use href="#go"/></svg></a></div></div></section>
+</div>
+
+<!-- ===================== SERVICES ===================== -->
+<div class="vue" data-vue="services" hidden>
+  <header class="tete">
+    <img src="img/etape-toit.jpg" alt="">
+    <div class="wrap"><div class="panneau verre"><span class="sur">Tous corps d'état</span><h1>Tous travaux, une seule équipe</h1><p class="chapo">Vous n'avez pas à chercher un maçon, puis un couvreur, puis un électricien. Nous enchaînons les métiers dans l'ordre et vous tenons au courant à chaque étape.</p></div></div>
+  </header>
+  <section class="x-travaux">
+    <div class="wrap">
+      <div class="x-ent" data-monte><h2>Tous <span class="x-mark">travaux</span></h2><p>Gros œuvre, second œuvre, finitions&nbsp;: tous les corps d'état du bâtiment, faits par nos artisans et suivis par un seul interlocuteur.</p></div>
+      <ul class="x-metiers" data-monte><li><b>Démolition</b><span>Dépose, curage</span></li><li><b>Terrassement</b><span>Fouilles, réseaux</span></li><li><b>Fondations</b><span>Semelles, dalles</span></li><li><b>Maçonnerie</b><span>Murs, gros œuvre</span></li><li><b>Charpente</b><span>Pose et reprise</span></li><li><b>Couverture</b><span>Tuiles, zinguerie</span></li><li><b>Menuiseries</b><span>Fenêtres, portes, volets</span></li><li><b>Plomberie</b><span>Sanitaires, réseaux</span></li><li><b>Électricité</b><span>Installation, mise aux normes</span></li><li><b>Chauffage</b><span>Radiateurs, eau chaude</span></li><li><b>Isolation</b><span>Murs, combles</span></li><li><b>Plâtrerie</b><span>Cloisons, plafonds</span></li><li><b>Carrelage</b><span>Sols, faïence</span></li><li><b>Sols</b><span>Parquet, revêtements</span></li><li><b>Peinture</b><span>Intérieure, extérieure</span></li><li><b>Façades</b><span>Enduit, ravalement</span></li></ul>
+      <p class="x-aussi"><b>Et aussi&nbsp;:</b> maisons neuves, extensions, surélévations, garages aménagés, rénovations complètes, terrasses et aménagements extérieurs.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="ent" data-monte><h2>La maison neuve,<br><span class="j">de A à Z</span></h2><p>Passez sur chaque étape pour voir le chantier avancer.</p></div>
+      <div class="etapes">
+        <ol class="liste" id="liste"></ol>
+        <div class="vue-img">
+          <img src="img/maison-avant.jpg" alt="" id="vue-a">
+          <img src="img/maison-avant.jpg" alt="" id="vue-b" class="off">
+          <div class="cap"><b id="vue-t">Étape A</b><span>Image d'illustration</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="ent" data-monte><h2>Agrandir <span class="j">ou rénover</span></h2><p>La maison est déjà là&nbsp;? Nous l'agrandissons ou nous reprenons l'intérieur, avec les mêmes artisans.</p></div>
+      <div class="duo-serv" data-monte>
+        <article class="serv"><img src="img/extension-apres.jpg" alt="Extension contemporaine avec baie vitrée ajoutée à une maison"><div><h3>Agrandissement</h3><p>Une chambre, un séjour ouvert sur le jardin, un étage en plus&nbsp;: fondations, raccord avec l'existant et finitions.</p><ul><li>Extension</li><li>Surélévation</li><li>Garage aménagé</li><li>Véranda maçonnée</li></ul></div></article>
+        <article class="serv"><img src="img/sdb-apres.jpg" alt="Salle de bains rénovée avec douche à l'italienne"><div><h3>Rénovation intérieure</h3><p>Une pièce ou toute la maison&nbsp;: dépose, électricité aux normes, plomberie, isolation, cloisons, sols, faïence, peinture.</p><ul><li>Cuisine</li><li>Salle de bains</li><li>Sols et murs</li><li>Électricité</li><li>Isolation</li></ul></div></article>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== RÉALISATIONS ===================== -->
+<div class="vue" data-vue="realisations" hidden>
+  <header class="tete">
+    <img src="img/facade-apres.jpg" alt="">
+    <div class="wrap"><div class="panneau verre"><span class="sur">Avant / après</span><h1>Le chantier, puis le sourire</h1><p class="chapo">Faites glisser le bouton jaune de chaque image pour voir la transformation. Images d'illustration, en attendant les photos de nos chantiers.</p></div></div>
+  </header>
+  <section style="background:var(--craie);color:var(--noir)">
+    <div class="wrap">
+      <div class="cartes">
+        <div class="carte" data-monte><div class="aa" data-aa><img class="apres" src="img/extension-apres.jpg" alt="Maison après agrandissement" draggable="false"><img class="avant" src="img/extension-avant.jpg" alt="Maison avant agrandissement" draggable="false"><span class="t g">Avant</span><span class="t d">Après</span><span class="ligne"></span><span class="rond" aria-hidden="true"><svg viewBox="0 0 34 20"><use href="#fleches"/></svg></span><span class="illu">Illustration</span><input type="range" min="0" max="100" value="50" aria-label="Comparer la maison avant et après l'agrandissement"></div><h3>Agrandissement</h3><p style="color:#55544F">Une pièce de vie de 30 m² sur le jardin, baie vitrée et toit plat.</p></div>
+        <div class="carte" data-monte><div class="aa" data-aa><img class="apres" src="img/cuisine-apres.jpg" alt="Cuisine après rénovation" draggable="false"><img class="avant" src="img/cuisine-avant.jpg" alt="Cuisine avant rénovation" draggable="false"><span class="t g">Avant</span><span class="t d">Après</span><span class="ligne"></span><span class="rond" aria-hidden="true"><svg viewBox="0 0 34 20"><use href="#fleches"/></svg></span><span class="illu">Illustration</span><input type="range" min="0" max="100" value="50" aria-label="Comparer la cuisine avant et après"></div><h3>Cuisine</h3><p style="color:#55544F">Dépose, réseaux refaits, carrelage, meubles et plan de travail posés.</p></div>
+        <div class="carte" data-monte><div class="aa" data-aa><img class="apres" src="img/sdb-apres.jpg" alt="Salle de bains après rénovation" draggable="false"><img class="avant" src="img/sdb-avant.jpg" alt="Salle de bains avant rénovation" draggable="false"><span class="t g">Avant</span><span class="t d">Après</span><span class="ligne"></span><span class="rond" aria-hidden="true"><svg viewBox="0 0 34 20"><use href="#fleches"/></svg></span><span class="illu">Illustration</span><input type="range" min="0" max="100" value="50" aria-label="Comparer la salle de bains avant et après"></div><h3>Salle de bains</h3><p style="color:#55544F">Douche à l'italienne, faïence du sol au plafond, meuble vasque neuf.</p></div>
+        <div class="carte" data-monte><div class="aa" data-aa><img class="apres" src="img/facade-apres.jpg" alt="Façade après rénovation" draggable="false"><img class="avant" src="img/facade-avant.jpg" alt="Façade avant rénovation" draggable="false"><span class="t g">Avant</span><span class="t d">Après</span><span class="ligne"></span><span class="rond" aria-hidden="true"><svg viewBox="0 0 34 20"><use href="#fleches"/></svg></span><span class="illu">Illustration</span><input type="range" min="0" max="100" value="50" aria-label="Comparer la façade avant et après"></div><h3>Façade</h3><p style="color:#55544F">Enduit neuf, menuiseries changées, volets et terrasse refaits.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="x-real">
+    <div class="wrap">
+      <div class="x-ent" data-monte><h2>Nos <span class="x-mark">réalisations</span></h2><p>Maisons neuves, agrandissements, rénovations&nbsp;: un aperçu de ce que nous construisons en Occitanie. Images d'illustration, bientôt remplacées par les photos de nos chantiers.</p></div>
+      <div class="x-filtres" role="group" aria-label="Filtrer les réalisations"><button type="button" data-f="tout" aria-pressed="true">Tout</button><button type="button" data-f="neuf" aria-pressed="false">Maison neuve</button><button type="button" data-f="agrandir" aria-pressed="false">Agrandissement</button><button type="button" data-f="renover" aria-pressed="false">Rénovation</button></div>
+      <div class="x-galerie" data-monte><figure class="x-carte" data-cat="neuf"><div class="x-img"><img src="img/maison-apres.jpg" alt="Maison de plain-pied en L"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Maison neuve</span><h3>Maison de plain-pied en L</h3><p>Fondations, maçonnerie, charpente, couverture, menuiseries, finitions</p></figcaption></figure><figure class="x-carte" data-cat="agrandir"><div class="x-img"><img src="img/extension-apres.jpg" alt="Extension de 30 m² sur le jardin"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Agrandissement</span><h3>Extension de 30 m² sur le jardin</h3><p>Fondations, maçonnerie, toit plat, baie vitrée</p></figcaption></figure><figure class="x-carte" data-cat="renover"><div class="x-img"><img src="img/cuisine-apres.jpg" alt="Cuisine entièrement refaite"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Rénovation</span><h3>Cuisine entièrement refaite</h3><p>Plomberie, électricité, carrelage, pose de la cuisine</p></figcaption></figure><figure class="x-carte" data-cat="renover"><div class="x-img"><img src="img/sdb-apres.jpg" alt="Salle de bains, douche à l'italienne"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Rénovation</span><h3>Salle de bains, douche à l'italienne</h3><p>Plomberie, étanchéité, faïence, peinture</p></figcaption></figure><figure class="x-carte" data-cat="renover"><div class="x-img"><img src="img/facade-apres.jpg" alt="Façade et terrasse reprises"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Rénovation</span><h3>Façade et terrasse reprises</h3><p>Enduit, menuiseries, volets, terrasse</p></figcaption></figure><figure class="x-carte" data-cat="neuf"><div class="x-img"><img src="img/etape-toit.jpg" alt="Chantier en cours : la toiture"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Maison neuve</span><h3>Chantier en cours : la toiture</h3><p>Charpente, tuiles canal, menuiseries posées</p></figcaption></figure><figure class="x-carte" data-cat="neuf"><div class="x-img"><img src="img/etape-murs.jpg" alt="Gros œuvre en briques"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Maison neuve</span><h3>Gros œuvre en briques</h3><p>Terrassement, fondations, maçonnerie</p></figcaption></figure><figure class="x-carte" data-cat="neuf"><div class="x-img"><img src="img/etape-interieur.jpg" alt="Plâtrerie et électricité"><span class="x-illu">Illustration</span></div><figcaption><span class="x-type">Maison neuve</span><h3>Plâtrerie et électricité</h3><p>Cloisons, isolation, réseaux électriques</p></figcaption></figure></div>
+      
+    </div>
+  </section>
+</div>
+
+<!-- ===================== 3D ===================== -->
+<div class="vue" data-vue="maquette-3d" hidden>
+  <section style="padding-top:130px">
+    <div class="wrap d3">
+      <div>
+        <h1 style="font-size:clamp(42px,5.4vw,80px)">La maison<br><span class="j">en 3D</span></h1>
+        <p style="color:var(--sable);font-size:18px;margin:22px 0 0">Tournez la maquette avec la souris ou le doigt, zoomez, puis choisissez une étape pour voir où en est le chantier.</p>
+        <ul class="pas3d">
+          <li><button type="button" data-etape="0" data-titre="Fondations" aria-pressed="false"><b>A</b>Fondations</button></li>
+          <li><button type="button" data-etape="1" data-titre="Murs" aria-pressed="false"><b>B</b>Murs</button></li>
+          <li><button type="button" data-etape="2" data-titre="Toiture" aria-pressed="false"><b>C</b>Charpente et toiture</button></li>
+          <li><button type="button" data-etape="3" data-titre="Menuiseries" aria-pressed="false"><b>D</b>Menuiseries</button></li>
+          <li><button type="button" data-etape="4" data-titre="Finitions" aria-pressed="true"><b>Z</b>Finitions et extérieurs</button></li>
+        </ul>
+        <button type="button" class="btn btn-j" data-etape-auto style="margin-top:22px">Construire la maison <svg aria-hidden="true"><use href="#go"/></svg></button>
+      </div>
+      <div class="scene" data-maison3d data-lenis-prevent><span class="lab" data-etape-titre>Finitions</span><span class="aide">Glissez pour tourner</span></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== CONTACT ===================== -->
+<div class="vue" data-vue="contact" hidden>
+  <section style="padding-top:140px">
+    <div class="wrap contact-v">
+      <div class="contact-tete"><h1 style="font-size:clamp(42px,5.6vw,82px)">On construit<br>avec le <span class="j">sourire</span></h1><p style="color:var(--sable);font-size:18px;max-width:28em;margin:26px 0 0">Répondez à quelques questions, deux minutes suffisent&nbsp;: nous vous rappelons pour fixer une visite et chiffrer le chantier. Nous intervenons dans les treize départements d'Occitanie.</p></div>
+      <div class="q" data-questionnaire></div>
+      <div class="contact-bas"><a class="numero" href="tel:+33634315223"><small>Appelez-nous</small>06 34 31 52 23</a><ul class="deps" aria-label="Départements où nous intervenons">
+          <li><b>09</b>Ariège</li><li><b>11</b>Aude</li><li><b>12</b>Aveyron</li><li><b>30</b>Gard</li><li><b>31</b>Haute-Garonne</li><li><b>32</b>Gers</li><li><b>34</b>Hérault</li><li><b>46</b>Lot</li><li><b>48</b>Lozère</li><li><b>65</b>Hautes-Pyrénées</li><li><b>66</b>Pyrénées-Orientales</li><li><b>81</b>Tarn</li><li><b>82</b>Tarn-et-Garonne</li>
+        </ul></div>
+    </div>
+  </section>
+  <section class="x-zone">
+    <div class="wrap">
+      <div class="x-ent" data-monte><h2>Depuis Toulouse, <span class="x-mark">partout en Occitanie</span></h2><p>Nous partons de Toulouse et intervenons dans les treize départements de la région. Touchez une ville pour la voir.</p></div>
+      <div class="carte" data-carte></div>
+      <p class="x-suite"><a class="x-lien" href="#contact">Décrire mon projet</a></p>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer class="pied">
+  <div class="wrap"><div class="pied-appel"><div><p class="pied-sur">Un projet de construction ou de rénovation&nbsp;?</p><a class="pied-num" href="tel:+33634315223">06 34 31 52 23</a></div><a class="btn btn-j" href="#contact">Décrire mon projet <svg aria-hidden="true"><use href="#go"/></svg></a></div></div>
+  <div class="wrap pied-haut">
+    <div class="pied-marque">
+      <a class="marque" href="#accueil" aria-label="Smile Constructions, accueil"><svg viewBox="250 0 600 640" aria-hidden="true"><use href="#logo" x="250" y="0" width="600" height="640"/></svg><b>SMILE<span>CONSTRUCTIONS</span></b></a>
+      <p>Tous travaux du bâtiment en Occitanie, des fondations aux finitions. 15 ans d'expérience, plus de 200 chantiers réalisés.</p>
+      <span class="pied-slogan">Construisez avec le sourire&nbsp;!</span>
+    </div>
+    <nav class="pied-col" aria-label="Pages du site"><h3>Le site</h3><a href="#accueil">Accueil</a><a href="#services">Tous travaux</a><a href="#realisations">Réalisations</a><a href="#maquette-3d">Maison 3D</a><a href="#contact">Contact</a></nav>
+    <div class="pied-col"><h3>Nos métiers</h3><a href="#services">Maison neuve</a><a href="#services">Agrandissement</a><a href="#services">Rénovation intérieure</a><a href="#services">Gros œuvre</a><a href="#services">Second œuvre et finitions</a></div>
+    <div class="pied-col"><h3>Nous joindre</h3><p>Toulouse et toute l'Occitanie, dans les 13 départements.</p><a class="pied-lien" href="#contact">Remplir le questionnaire</a></div>
+  </div>
+  <div class="wrap pied-bas"><span>© 2026 Smile Constructions · Tous travaux, tous corps d'état</span><span>Images d'illustration</span><button type="button" class="pied-hautdepage" onclick="window.scrollTo({top:0,behavior:'smooth'})">Haut de page ↑</button></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="js/site.js"></script>
+<script src="js/maison3d.js"></script>
+<script src="js/occitanie.js"></script>
+<script src="js/carte.js"></script>
+<script src="js/questionnaire.js"></script>
+<script>
+(function(){
+  var E=[
+    ['A','Terrassement et fondations',"Implantation, fouilles, semelles, dalle. La base qui porte toute la maison.",'maison-avant'],
+    ['B','Gros œuvre et maçonnerie',"Murs en briques ou en parpaings, chaînages et planchers.",'etape-murs'],
+    ['C','Charpente et couverture',"Charpente, tuiles canal ou romanes, zinguerie : la maison est hors d'eau.",'etape-toit'],
+    ['D','Menuiseries',"Fenêtres, baies vitrées, portes et volets : la maison est hors d'air.",'etape-toit'],
+    ['E','Électricité, plomberie, chauffage',"Réseaux, tableau électrique, sanitaires, pompe à chaleur, ventilation.",'etape-interieur'],
+    ['F','Isolation et plâtrerie',"Murs et combles isolés, cloisons, plafonds, doublages.",'etape-interieur'],
+    ['G','Finitions',"Carrelage, parquet, faïence, peinture, cuisine et salle de bains posées.",'cuisine-apres'],
+    ['Z','Extérieurs et remise des clés',"Enduit de façade, terrasse, allées, clôture. Puis les clés sont à vous.",'maison-apres']
+  ];
+  var ol=document.getElementById('liste'),a=document.getElementById('vue-a'),b=document.getElementById('vue-b'),t=document.getElementById('vue-t'),cur='img/maison-avant.jpg';
+  E.forEach(function(e,i){
+    var li=document.createElement('li');
+    li.innerHTML='<button type="button" aria-expanded="'+(i===0)+'" aria-controls="d'+i+'"><span class="lt">'+e[0]+'</span><h3>'+e[1]+'</h3><span class="fl"><svg viewBox="0 0 16 16"><path d="M5 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="det" id="d'+i+'">'+e[2]+'</span></button>';
+    ol.appendChild(li);
+    var btn=li.firstChild;
+    function ouvrir(){
+      ol.querySelectorAll('button').forEach(function(o){o.setAttribute('aria-expanded',o===btn)});
+      t.textContent='Étape '+e[0];
+      var src='img/'+e[3]+'.jpg';if(cur===src)return;cur=src;
+      var vis=a.classList.contains('off')?b:a,cach=vis===a?b:a;
+      cach.src=src;cach.classList.remove('off');vis.classList.add('off');
+    }
+    btn.addEventListener('click',ouvrir);btn.addEventListener('mouseenter',ouvrir);btn.addEventListener('focus',ouvrir);
+  });
+})();
+</script>
+
+<script>
+document.querySelectorAll('.x-filtres').forEach(function(f){
+  var g=f.parentNode.querySelector('.x-galerie');
+  f.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){
+    f.querySelectorAll('button').forEach(function(o){o.setAttribute('aria-pressed',o===b)});
+    g.querySelectorAll('.x-carte').forEach(function(c){c.hidden=!(b.dataset.f==='tout'||c.dataset.cat===b.dataset.f)});
+  })});
+});
+</script>
+</body>
+</html>

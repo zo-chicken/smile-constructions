@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="Smile Constructions : tous travaux du bâtiment en Occitanie, maison neuve, agrandissement, rénovation. Maquette du site.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smile Constructions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&display=swap">
+<style>
+:root{--jaune:#F2C233;--noir:#1E1E1C;--blanc:#fff;--fond:#F7F6F2;--gris:#66645E;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--noir);font-family:"Rubik","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:1100px;margin:0 auto;padding:56px max(20px,env(safe-area-inset-left,0px)) 64px max(20px,env(safe-area-inset-right,0px))}
+header{display:flex;align-items:center;gap:16px}
+.logo{width:72px;height:auto}
+h1{margin:0;font-weight:900;font-size:clamp(30px,5vw,52px);line-height:.95;text-transform:uppercase}
+h1 span{display:block;font-size:.42em;letter-spacing:.14em;font-weight:700}
+.intro{margin:26px 0 40px;font-size:18px;max-width:38em;color:var(--gris)}
+.choix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.v{display:flex;flex-direction:column;text-decoration:none;color:inherit;border-radius:24px;overflow:hidden;border:3px solid var(--noir);background:var(--blanc);transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s cubic-bezier(.2,.8,.2,1)}
+.v:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--noir)}
+.v img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-bottom:3px solid var(--noir)}
+.v div{padding:20px 22px 24px}
+.v b{display:block;font-size:24px;text-transform:uppercase;font-weight:900}
+.v p{margin:8px 0 0;color:var(--gris)}
+.v.j div{background:var(--jaune)}
+.v.j p{color:var(--noir)}
+.v .aller{display:inline-block;margin-top:14px;font-weight:800;background:var(--noir);color:var(--jaune);padding:10px 16px;border-radius:999px}
+.v.b .aller{background:var(--jaune);color:var(--noir)}
+.note{margin-top:34px;font-size:14px;color:var(--gris)}
+@media (max-width:700px){.choix{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<main>
+  <header><svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="250 0 600 640" role="img" aria-label="Smile Constructions">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#EEEEEC" stroke-width="84">
+      <path d="M300 270 L557 35 L795 262 M740 100 L740 195 M361 245 L361 405 M756 245 L756 405 M325 485 L372 455 C430 590 690 590 745 455 L792 485"/>
+    </g>
+    <path d="M557 62 L361 240 L361 410 L756 410 L756 240 Z" fill="#EEEEEC" stroke="none"/>
+    <path d="M300 270 L557 35 L795 262 M740 100 L740 195 M361 245 L361 405 M756 245 L756 405" stroke="#1E1E1C" stroke-width="36"/>
+    <path d="M325 485 L372 455 C430 590 690 590 745 455 L792 485" stroke="#F2C233" stroke-width="34"/>
+  </g>
+  <g fill="#F2C233">
+    <rect x="498" y="268" width="50" height="52" rx="5"/><rect x="568" y="268" width="50" height="52" rx="5"/>
+    <rect x="498" y="338" width="50" height="52" rx="5"/><rect x="568" y="338" width="50" height="52" rx="5"/>
+  </g>
+</svg>
+<h1>Smile<span>Constructions</span></h1></header>
+  <p class="intro">Maquette du site, en deux versions. Choisissez celle que vous voulez parcourir.</p>
+  <div class="choix">
+    <a class="v j" href="jaune.html"><img src="img/maison-avant.jpg" alt="Chantier de maison au stade des fondations"><div><b>Version jaune</b><p>L'esprit de la carte de visite : fond jaune, bandes blanches, ombres franches.</p><span class="aller">Voir la version jaune</span></div></a>
+    <a class="v b" href="blanc.html"><img src="img/maison-apres.jpg" alt="Maison terminée avec jardin"><div><b>Version blanche</b><p>La maison en plein écran, des panneaux de verre blanc, tout en clair.</p><span class="aller">Voir la version blanche</span></div></a>
+  </div>
+  <p class="note">Images d'illustration, en attendant les photos des chantiers. Le questionnaire n'envoie encore aucune demande.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="250 0 600 640" role="img" aria-label="Smile Constructions">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#EEEEEC" stroke-width="84">
+      <path d="M300 270 L557 35 L795 262 M740 100 L740 195 M361 245 L361 405 M756 245 L756 405 M325 485 L372 455 C430 590 690 590 745 455 L792 485"/>
+    </g>
+    <path d="M557 62 L361 240 L361 410 L756 410 L756 240 Z" fill="#EEEEEC" stroke="none"/>
+    <path d="M300 270 L557 35 L795 262 M740 100 L740 195 M361 245 L361 405 M756 245 L756 405" stroke="#1E1E1C" stroke-width="36"/>
+    <path d="M325 485 L372 455 C430 590 690 590 745 455 L792 485" stroke="#F2C233" stroke-width="34"/>
+  </g>
+  <g fill="#F2C233">
+    <rect x="498" y="268" width="50" height="52" rx="5"/><rect x="568" y="268" width="50" height="52" rx="5"/>
+    <rect x="498" y="338" width="50" height="52" rx="5"/><rect x="568" y="338" width="50" height="52" rx="5"/>
+  </g>
+</svg>
